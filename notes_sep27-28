@@ -1,0 +1,43 @@
+void setup() {
+  size(1000,1000);
+  frameRate (10);
+}
+
+void draw () {
+  int d = int(random(350)); // separate + add void draw () {
+  int x = int(random(d/2, width-(d/2))); //built in variables
+  int y = int(random(d/2, height-(d/2))); //always within the window
+
+/*  print("x: "+x);
+  print("\ty: "+y); //adding spaces in the beginning for readability 
+  print("\td: "+d); // \ like function layer
+  print(frameRate); */
+  //what does tab do when y is 4 digits? tab aligns into grid
+  //background(x/4,y/4,d/4); //calling background resets the window into new background. keep off
+  target(x,y,d); 
+}
+
+void target(int x,int y,int d) {
+  background(0,0,0);
+  stroke(255,255,0);
+  fill(x/5,y/5,d/5);
+  circle(x,y,d);
+  
+  fill(255,255,255);
+  circle(x,y,(2*d)/3); // int/int will always be an int. 2/3 in java is 0. 2/3.0 will give the "correct" value
+  
+  fill(x/4,y/4,d/4);
+  circle(x,y,d/3);
+}
+
+/* 
+escape character = \
+\n = newline
+\\ = / in string
+\" = quotes in string
+\t = tab
+
+writing variables
+x_y = snake case
+xY = camel case
+*/
