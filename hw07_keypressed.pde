@@ -41,7 +41,7 @@ void draw() {
   x += xspeed;
 }//draw bracket
 
-void keyPressed() {
+void keyPressed() { //this is the new thing we learned. the function keyPressed is a built in function in processing that takes the input of the user. Then it can do stuff with it, like print it, do a ceertain action if a certain key is pressed, etc.
   println(key);
   if (key == 'w') {
     yspeed = -speed; // Moves up
