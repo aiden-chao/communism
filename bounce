@@ -1,0 +1,52 @@
+int x;
+int y;
+int xspeed;
+int yspeed;
+
+int fx;
+int fy;
+int fxspeed;
+int fyspeed;
+
+void setup() {
+  background(0);
+  size(600, 600);
+
+  x = int(random(1, width-76));
+  y = int(random(1, height - 51));
+
+  xspeed = int(random(1, 10));
+  yspeed = int(random(1, 10));
+  
+  fx = int(random(1, width-76));
+  fy = int(random(1, height - 51));
+  
+  fxspeed = int(random(1, 10));
+  fyspeed = int(random(1, 10));
+}
+
+void draw() {
+  background(0);
+  //first rect
+  if (x + 75 >= width || x <= 0) {
+    xspeed *= -1;
+  }
+  if (y + 50 >= height || y <= 0) {
+    yspeed *= -1;
+  }
+  fill(60, 120, 180);
+  rect(x, y, int(random(1,75)), int(random(1,75)));
+  x += xspeed;
+  y += yspeed;
+  //second rect
+  if (fx + 75 >= width || fx <= 0) {
+    fxspeed *= -1;
+  }
+  if (fy + 50 >= height || fy <= 0) {
+    fyspeed *= -1;
+  }
+  fill(60, 120, 180);
+  rect(fx, fy, 75, 50);
+  fx += fxspeed;
+  fy += fyspeed;
+}
