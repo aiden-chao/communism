@@ -1,0 +1,95 @@
+class Ball {
+  int cx;
+  int cy;
+  int xVel;
+  int yVel;
+  int radius;
+  color c;
+  boolean moving = true //instance variable tracks moving
+
+  Ball() {
+    c = 255;
+    radius = int(random(10, 26));
+    cx = int(random(radius, width-radius));
+    cy = int(random(radius, height-radius));
+    xVel = int(random(-5, 5));
+    if (xVel == 0) { 
+      xVel = 5;
+    }
+    yVel = int(random(-5, 5));
+    if (yVel == 0) { 
+      yVel = 5;
+    }
+  } //constructor
+
+  Ball(color f) {
+    this();
+    c = f;
+  }
+
+  void display() {
+    fill(c);
+    circle(this.cx, this.cy, this.radius*2);
+  }
+  
+void keyPressed() {
+  if (key == 'p') {
+    b0.moving = !b0.moving;
+    b1.moving = !b1.moving;
+  }
+  else if (key == 'o') {
+    b0.moving = !b0.moving;
+  }
+  else if (key == 'i') {
+    b1.moving = !b1.moving;    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+//stopping movement through key pressed
+  void move() {
+    if (cx <= radius || cx >= (width-radius)) {
+      xVel *= -1;
+    }
+    if ( cy <= radius ||
+      cy >= (height-radius)) {
+      yVel *= -1;
+    }
+    cx+= xVel;
+    cy+= yVel;
+  }
+}
+
+
+void draw() {
+  background(255);
+  b0.display();
+  b1.display();
+  b0.move();
+  b1.move();
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
