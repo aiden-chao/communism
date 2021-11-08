@@ -1,0 +1,93 @@
+class Land {
+  int x;
+  int y;
+  int size;
+  int state;
+  
+  Land(int _x, int _y, int sze, int ste) {
+    x = _x;
+    y = _y;
+    size = sze;
+    state = ste;
+  }
+  
+  void display() {
+    if (this.state == DIRT) {
+      fill(#9B6A02);
+    }
+    if (this.state == FIRE) {
+      fill(#FF0000);
+    }
+    if (this.state == BURNT) {
+      fill(0);
+    }
+    else if (this.state == TREE) {
+      fill(#02E30B);
+    }
+    square(x,y,size);
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+int DIRT = 0;
+int FIRE = 1;
+int BURNT = 2;
+int TREE = 3;
+
+Land l0;
+Land l1;
+Land l2;
+Land l3;
+
+Land plots[];
+
+void setup () {
+  size(1000,1000);
+  l0 = new Land(0,0,30,DIRT);
+  l1 = new Land(30,0,30, FIRE);
+  l2 = new Land(60,0,30, BURNT);
+  l3 = new Land(90,0,30, TREE);
+  
+  setupLand(20);
+  drawLands();
+}
+
+void draw () {
+ background(255,255,255);
+ l0.display();
+ l1.display();
+ l2.display();
+ l3.display();
+}
+
+void setupLand(int numPlots, float fertility) {
+  int plotSize = width/numPlots;
+  plots = new Land[numPlots];
+  for (int p=0; p<plots.length; p++) { //going through array
+    plots[p] = new Land(p*plotSize,0, plotSize, DIRT); //index mult by size of each plot is start val
+  }
+ 
+void drawLands() {
+  for (int p=0; p<plots.length; p++) {
+    
+  }
+  
+}
+
+  
+  
+
+
+
+
+
+
+ 
