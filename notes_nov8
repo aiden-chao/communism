@@ -1,6 +1,77 @@
-class Land {
+//driver
+int DIRT = 0;
+int FIRE = 1;
+int BURNT = 2;
+int TREE = 3;
+
+Land l0;
+Land l1;
+Land l2;
+Land l3;
+
+Land plots[];
+
+void setup () {
+  size(1000,1000);
+  l0 = new Land(0,0,30,DIRT);
+  l1 = new Land(30,0,30, FIRE);
+  l2 = new Land(60,0,30, BURNT);
+  l3 = new Land(90,0,30, TREE);
+  
+  setupLand(20);
+  drawLands();
+}
+
+void draw () {
+ background(255,255,255);
+ //l0.display();
+ //l1.display();
+ //l2.display();
+ //l3.display();
+}
+
+void liveFire() {
+  plots[0].updateState(0);
+  for (int p=1; p<plots.length; p++) {
+    plots[p].updateState(plots[p-1].state);
+  }
+}
+
+void setupLand(int numPlots, float fertility) {
+  int plotSize = width/numPlots;
+  plots = new Land[numPlots];
+  for (int p=0; p<plots.length; p++) { //going through array
+    plots[p] = new Land(p*plotSize,0, plotSize, DIRT); //index mult by size of each plot is start val
+  
+  int type;
+  for (int p=0; p<plots.length; p++) {
+    type = DIRT;
+    if (int(random(100)) < fertility) {
+      type = TREE;
+    }
+    plots[p] = new Land(p*plotSize,0,plotSize, type
+  }
+  plots[0].state = FIRE
+}
+  
+ 
+void drawLands() {
+  for (int p=0; p<plots.length; p++) {
+    plots[p].display();
+  }
+}
+
+
+
+
+
+
+
+//class
+class () Land {
   int x;
   int y;
+  int nextState; //keeping track of what to turn into
   int size;
   int state;
   
@@ -27,67 +98,20 @@ class Land {
     square(x,y,size);
   }
   
-}
-
-
-
-
-
-
-
-
-
-int DIRT = 0;
-int FIRE = 1;
-int BURNT = 2;
-int TREE = 3;
-
-Land l0;
-Land l1;
-Land l2;
-Land l3;
-
-Land plots[];
-
-void setup () {
-  size(1000,1000);
-  l0 = new Land(0,0,30,DIRT);
-  l1 = new Land(30,0,30, FIRE);
-  l2 = new Land(60,0,30, BURNT);
-  l3 = new Land(90,0,30, TREE);
-  
-  setupLand(20);
-  drawLands();
-}
-
-void draw () {
- background(255,255,255);
- l0.display();
- l1.display();
- l2.display();
- l3.display();
-}
-
-void setupLand(int numPlots, float fertility) {
-  int plotSize = width/numPlots;
-  plots = new Land[numPlots];
-  for (int p=0; p<plots.length; p++) { //going through array
-    plots[p] = new Land(p*plotSize,0, plotSize, DIRT); //index mult by size of each plot is start val
+  void updateState(int neighborState) {
+    if (state == FIRE) {
+      nextState = BURNT;
+    }
+    else if (neighborState == FIRE && this.state == TREE) {
+    nextState = FIRE;
+    }
+    else {
+      nextState = state;
+    }
   }
- 
-void drawLands() {
-  for (int p=0; p<plots.length; p++) {
-    
-  }
-  
 }
 
+
   
   
 
-
-
-
-
-
- 
